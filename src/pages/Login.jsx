@@ -1,10 +1,15 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useRedirectIfAuthenticated } from '../hooks/useRedirectIfAuthenticated';
 
 function Login() {
 
   const [ usernameValue, setUsernameValue ] = useState('');
   const [ passwordValue, setPasswordValue ] = useState('');
 
+  const navigate = useNavigate();
+
+  useRedirectIfAuthenticated('login', '/folders');
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -27,11 +32,11 @@ function Login() {
     console.log(data)
     if (data.success) {
       console.log("The token is: ", data.auth.token);
+      navigate('/folders', { replace: true });
     }
     else {
       console.log(data.message);
     }
-
 
   }
 
@@ -53,6 +58,7 @@ function Login() {
           </div>
           <button type='submit'>Log in</button>
         </form>
+        <Link to={'/signup'}>Sign up here</Link>
       </div>
     </>
   )

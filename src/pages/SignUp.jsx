@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useRedirectIfAuthenticated } from '../hooks/useRedirectIfAuthenticated';
+
 
 function SignUp() {
 
@@ -6,6 +10,10 @@ function SignUp() {
     const [ passwordValue, setPasswordValue ] = useState('');
     const [ passwordConfirmValue, setPasswordConfirmValue ] = useState('');
     const [ errorMessages, setErrorMessages ] = useState([]);
+
+    const navigate = useNavigate();
+
+    useRedirectIfAuthenticated('signup', '/folders');
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -20,7 +28,7 @@ function SignUp() {
                 username: usernameValue,
                 password: passwordValue,
                 passwordConfirm: passwordConfirmValue
-            })
+            }),
         });
         const data = await response.json();
         console.log("Data: ", data);
@@ -29,10 +37,10 @@ function SignUp() {
         if (!data.success) {
             setErrorMessages(data.errors)
         } else {
-            return;
-            // redirect to someplace else
+            navigate("/folders", { replace: true });
         }
     }
+
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -54,6 +62,7 @@ function SignUp() {
                 <button type="submit">Sign Up</button>
             </form>
             {errorMessages.map(error => <li key={error.msg}>{error.msg}</li> )}
+            <Link to={'/login'}>Log in here</Link>
         </>
     )
 }

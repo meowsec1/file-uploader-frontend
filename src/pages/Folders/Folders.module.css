@@ -1,0 +1,70 @@
+.folderGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.folderCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #1f1f1f;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.folderIcon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.folderName {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #fff;
+  word-break: break-word;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+
+.shareButton {
+  flex: 1;
+  background-color: #1890ff;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.shareButton:hover {
+  background-color: #0d6efd;
+}
+
+.deleteButton {
+  flex: 1;
+  background-color: #ff4d4f;
+  border: none;
+  color: white;
+  padding: 0px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.deleteButton:hover {
+  background-color: #ff1f1f;
+}
